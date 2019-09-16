@@ -4,6 +4,21 @@ import (
 	"fmt"
 )
 
+type Celsius float64
+type Fahrenheit float64
+
+const (
+	AbsoluteZeroC Celsius = -273.15
+	FreezingC     Celsius = 0
+	BoilingC      Celsius = 100
+)
+
+func CelsiusToF(c Celsius) Fahrenheit {
+	return Fahrenheit(c*9/5 + 32)
+}
+func FahrenheitToC(F Fahrenheit) Celsius {
+	return Celsius((F - 32) * 5 / 9)
+}
 func main() {
 	map1 := map[string]int{
 		"a": 1, "b": 2, "c": 3,
@@ -27,4 +42,7 @@ func main() {
 	map1_1 := map1
 	delete(map1_1, "c")
 	fmt.Printf("%v %v\n", map1_1, map1)
+	//Type Declearation
+	fmt.Printf("%v\n", FahrenheitToC(1234.343))
+
 }
