@@ -80,6 +80,11 @@ type Shape interface {
 	Area() float64
 	Perimeter() float64
 }
+type Object interface {
+	Volume() float64
+	Area() float64
+	Perimeter() float64
+}
 type Cuboid struct {
 	Base Rectangle
 	H    float64
@@ -91,4 +96,40 @@ func (r Cuboid) Area() float64 {
 
 func (r Cuboid) Perimeter() float64 {
 	return 2 * ((r.Base.X * r.Base.Y) + (r.Base.Y * r.H) + (r.H * r.Base.X))
+}
+func (r Cuboid) Volume() float64 {
+	return r.Base.X * r.Base.Y * r.H
+}
+
+//Empty Interface(dynamic type and  Value)
+func Explain(i interface{}) {
+	fmt.Printf("the value given to function is type of '%T' with value %v\n", i, i)
+}
+
+type MyString string
+
+//From Video on Interface part 2
+type Notifier interface {
+	Notify()
+}
+type User struct {
+	Name  string
+	Email string
+}
+
+func (u *User) Notify() {
+	fmt.Printf("Sending User Email Notification to %s <%s>\n", u.Name, u.Email)
+}
+func SendNotification(n Notifier) {
+	n.Notify()
+}
+
+//Part3 interface
+type Printer interface {
+	Print()
+}
+
+//implementing the Printer interface in User
+func (u User) Print() {
+	fmt.Printf("UserName: %s and Email : %s\n", u.Name, u.Email)
 }

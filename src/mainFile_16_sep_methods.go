@@ -51,4 +51,32 @@ func main() {
 	fmt.Println(interf)
 	fmt.Println(interf.Area())
 	fmt.Println(interf.Perimeter())
+
+	rec1 := learning.Rectangle{2, 3}
+	rt := learning.MyString("Hello World")
+	learning.Explain(rec1)
+	learning.Explain(rt)
+
+	var interff learning.Object = learning.Cuboid{learning.Rectangle{3, 4}, 6}
+	fmt.Println(interff.Area())
+	fmt.Println(interff.Perimeter())
+	fmt.Println(interff.Volume())
+	//fmt.Println(learning.Explain(interff))
+	u := learning.User{Name: "Birendra", Email: "biren@mail.com"}
+	learning.SendNotification(&u)
+	//Part 3 interface
+	entities := []learning.Printer{u, &u}
+	u.Name = "ChangedName"
+	for _, e := range entities {
+		e.Print()
+	}
+	//without Embedding
+	var adminInterface learning.Show = learning.Admin{Person: learning.User{Name: "Hell", Email: "asdfasd@.com"}, Level: 12}
+	adminInterface.Display()
+	admin := learning.Admin{Person: learning.User{"ji", "aasf@dfasdf"}, Level: 4}
+	admin.Person.Notify() //Manually call
+	adminEmbedded := learning.AdminEmbedded{User: learning.User{Name: "Hi", Email: "adfsd@3"}, Level: 12}
+	adminEmbedded.Notify()
+	adminEmbedded.User.Notify()
+
 }
