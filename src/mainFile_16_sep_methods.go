@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func MainMethods() {
 	var employee1 = learning.Employee{
 		"Birendra",
 		12.0,
@@ -79,4 +79,9 @@ func main() {
 	adminEmbedded.Notify()
 	adminEmbedded.User.Notify()
 
+	//Areas
+
+	sum := learning.CalculateTotalArea(learning.Rectangle{3, 4}, learning.Circle{4}, learning.Square{3})
+	fmt.Println(sum)
+	go learning.CalculateTotalArea(learning.Rectangle{3, 4}, learning.Circle{4}, learning.Square{3})
 }

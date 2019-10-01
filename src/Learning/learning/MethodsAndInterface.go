@@ -3,6 +3,7 @@ package learning
 import (
 	"fmt"
 	"math"
+	"time"
 )
 
 type Employee struct {
@@ -25,6 +26,28 @@ func (r Rectangle) Area() float64 {
 }
 func (r Rectangle) Perimeter() float64 {
 	return 2 * (r.X * r.Y)
+}
+
+type Circle struct {
+	R float64
+}
+
+func (c Circle) Area() float64 {
+	return math.Pi * math.Pow(c.R, 2)
+}
+func (c Circle) Perimeter() float64 {
+	return 2 * math.Pi * c.R
+}
+
+type Square struct {
+	Side float64
+}
+
+func (s Square) Area() float64 {
+	return s.Side * s.Side
+}
+func (s Square) Perimeter() float64 {
+	return 4 * s.Side
 }
 
 //Pass by address or semantic reference
@@ -132,4 +155,14 @@ type Printer interface {
 //implementing the Printer interface in User
 func (u User) Print() {
 	fmt.Printf("UserName: %s and Email : %s\n", u.Name, u.Email)
+}
+func CalculateTotalArea(s ...Shape) float64 {
+	sum := 0.0
+	for _, T := range s {
+		time.Sleep(1 * time.Second)
+		fmt.Println("area", T.Area())
+		sum = sum + T.Area()
+
+	}
+	return sum
 }
